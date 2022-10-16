@@ -3,6 +3,7 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import FileDownloadIcon from "@mui/icons-material/FileDownload";
+import welcomingImage from '../../assets/hello.svg';
 import React from "react";
 import Typewriter from "typewriter-effect";
 
@@ -127,7 +128,7 @@ const Home = () => {
       <Stack color="white">
         <img
           style={{ maxWidth: "100%", minWidth: "500px" }}
-          src="/src/assets/hello.svg"
+          src={welcomingImage}
           alt="Image of presentation"
         />
       </Stack>
