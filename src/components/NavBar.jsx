@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyledToggleButtonGroup } from './material/StyledToggleButtonGroup';
 import { MaterialUISwitch } from './material/MaterialSwitch';
+import ColorModeContext from '../themes/palette';
 import {
   AppBar,
   Toolbar,
@@ -22,11 +23,11 @@ const pages = [
   { name: "projects", path: "/projects" },
 ];    
 
-const NavBar = () => {
+const NavBar = ({ pagesValue, setPagesValue }) => {
   const currentPage = useLocation();
   const current = currentPage.pathname.slice(1, currentPage.pathname.length);
-  const [pagesValue, setPagesValue] = React.useState(current ? current : 'home');
   const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const {colorMode} = React.useContext(ColorModeContext);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -41,9 +42,13 @@ const NavBar = () => {
   const handleClick = () => {
     setPagesValue('home');
   }
+
+  React.useEffect(() => {
+    setPagesValue(current ? current : 'home');
+  }, []);
     
   return (
-    <AppBar position="static" sx={{ bgcolor: "white", boxShadow: 4 }}>
+    <AppBar position="static" sx={{ bgcolor:'background.light', boxShadow: 4 }}>
       <Toolbar>
         <Typography
           noWrap
@@ -51,24 +56,24 @@ const NavBar = () => {
             mr: 2,
             display: { xs: "none", md: "flex" },
             fontFamily: "helvetica",
-            fontWeight: 500,
+            fontWeight: 700,
             letterSpacing: ".1rem",
             color: "primary.main",
+            textDecoration: "none"
           }}
           onClick={handleClick}
-          color="primary"
           variant="h5"
           component={Link}
           to="/"
         >
           {"<"}
           <Typography
-            color="primary.contrastText"
+            color="text.primary"
             variant="h5"
             component="span"
             letterSpacing=".1rem"
           >
-            Ángelo colmenares
+            Ángelo
           </Typography>{" "}
           {"/>"}
         </Typography>
@@ -98,11 +103,17 @@ const NavBar = () => {
             open={Boolean(anchorElNav)}
             onClose={handleCloseNavMenu}
             sx={{
-              display: { xs: "block", md: "none" },
+              display: { xs: "block", md: "none" }
             }}
           >
             {pages.map((page) => (
-              <MenuItem component={Link} to={page.path} key={page.name} onClick={handleCloseNavMenu}>
+              <MenuItem 
+                component={Link} 
+                to={page.path} 
+                key={page.name} 
+                onClick={handleCloseNavMenu}
+                sx={{ bgcolor: 'background.light' }}
+              >
                 <Typography 
                   textAlign="center"
                 >
@@ -123,18 +134,20 @@ const NavBar = () => {
             mr: 2,
             display: { xs: "flex", md: "none" },
             flexGrow: 1,
-            fontSize:'1.1rem'
+            fontSize:'1.5rem',
+            textDecoration:'none',
+            fontWeight:'bold'
           }}
         >
           {"<"}
           <Typography
-            color="primary.contrastText"
+            color="text.primary"
             variant="h5"
             component="span"
             letterSpacing=".1rem"
-            fontSize='1.1rem'
+            fontSize='1.5rem'
           >
-            Ángelo colmenares
+            Ángelo
           </Typography>{" "}
           {"/>"}
         </Typography>
@@ -160,76 +173,10 @@ const NavBar = () => {
             ))}
           </StyledToggleButtonGroup>
         </Box>
-        <MaterialUISwitch />
+        <MaterialUISwitch onClick={colorMode.toggleColorMode} />
       </Toolbar>
     </AppBar>
   );
 }
 
 export default NavBar
-
-/** 
- *    <Toolbar display="flex" sx={{ justifyContent: "space-between" }}>
-        <Typography onClick={handleClick} color="primary" variant="h5" component={Link} to='/'>
-          {"<"}
-          <Typography
-            color="primary.contrastText"
-            variant="h5"
-            component="span"
-            letterSpacing='.1rem'
-          >
-            Ángelo colmenares
-          </Typography>{" "}
-          {"/>"}
-        </Typography>
-        <StyledToggleButtonGroup
-          aria-label="alignment button group"
-          value={pagesValue}
-          onChange={handlePagesChange}
-          size="large"
-          exclusive
-        >
-          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: 'block', md: 'none' },
-              }}
-            >
-              {pages.map((page) => (
-                <MenuItem key={page.name} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page.name}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </Box>
-          {pages.map((page) => (
-            <ToggleButton component={Link} to={page.path} value={page.name}>
-              {page.name}
-            </ToggleButton>
-          ))}
-        </StyledToggleButtonGroup>
-      </Toolbar>
- */

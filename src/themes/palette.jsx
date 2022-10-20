@@ -1,32 +1,32 @@
 import React from 'react'
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { getDesignTokens } from './modes';
 
-const theme = createTheme({
-  palette: {
-    status: {
-      danger: 'red',
-    },
-    primary: {
-      light: '#33c9dc',
-      main: '#00bcd4',
-      dark: '#008394',
-      contrastText: '#333333',
-    },
-    secondary: {
-      light: '#ffac33',
-      main: '#ff9800',
-      dark: '#b26a00',
-      contrastText: '#333333',
-    },
-  },
-});
+const ColorModeContext = React.createContext();
 
-const PaletteProvider = ({children}) => {
+export const PaletteProvider = ({children}) => {
+
+  const [modeColor, setModeColor] = React.useState('light');
+  const colorMode = React.useMemo(
+    () => ({
+      toggleColorMode: () => {
+        setModeColor((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+      },
+    }),
+    [],
+  );
+
+  const theme = React.useMemo(
+    () =>
+      createTheme(getDesignTokens(modeColor)),
+    [modeColor],
+  );
+
   return (
-    <ThemeProvider theme={theme}>
-        {children}
-    </ThemeProvider>
-  )
+    <ColorModeContext.Provider value={{colorMode, modeColor}}>
+      <ThemeProvider theme={theme}>{children}</ThemeProvider>
+    </ColorModeContext.Provider>
+  );
 }
 
-export default PaletteProvider
+export default ColorModeContext

@@ -1,41 +1,61 @@
+import React from "react";
+import { Link } from 'react-router-dom'; 
+
+/** Material Ui Components */
 import { Box, Stack, Typography, IconButton, Button } from "@mui/material";
+
+/** Material Icons */
 import GitHubIcon from "@mui/icons-material/GitHub";
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import TwitterIcon from "@mui/icons-material/Twitter";
-import FileDownloadIcon from "@mui/icons-material/FileDownload";
-import welcomingImage from '../../assets/hello.svg';
-import React from "react";
+import ForwardIcon from '@mui/icons-material/Forward';
+
+/** Image Assets */
+import welcomingImage from "../../assets/hello.svg";
+import welcomingImageDarkMode from "../../assets/hello-darkmode.svg";
 import Typewriter from "typewriter-effect";
 
-const Home = () => {
-  const quos = [
-    "I am Front-End Developer.",
-    "I am Creative.",
-    "I am always willing to learn.",
-    "I am a problem solver.",
-    "I'm a Hard Worker.",
-  ];
+/** Theme Context */
+import ColorModeContext from '../../themes/palette';
+
+const quos = [
+  "I am Front-End Developer.",
+  "I am Creative.",
+  "I am always willing to learn.",
+  "I am a problem solver.",
+  "I'm a Hard Worker.",
+];
+
+const Home = ({ setPagesValue }) => {
+
+  const {modeColor} = React.useContext(ColorModeContext);
+
+  const handleChangePage = () => {
+    setPagesValue('about');
+  }
 
   return (
-    <Box
+    <Stack
       component="section"
-      sx={{ mt: 10, display: { xs: "flex", columnGap: "5rem" } }}
+      direction={{ md: "row", xs: "column-reverse" }}
+      spacing={5}
+      sx={{ mt: 10 }}
       className="home--section"
     >
       <Stack sx={{ rowGap: "1.5rem" }}>
-        <Typography variant="h1" sx={{ fontSize: "3rem", fontWeight: 300 }}>
+        <Typography variant="h1" sx={{ fontSize:{ md: "3rem", xs: '2.4rem' }, fontWeight: 300 }}>
           HELLO!
           <Typography
             variant="h1"
             component="span"
-            sx={{ fontSize: "2.4rem", color: "primary.main", fontWeight: 600 }}
+            sx={{ fontSize:{ md: "2.4rem", xs: '2rem' }, color: "primary.main", fontWeight: 600 }}
           >
             {" "}
             I am Ángelo
           </Typography>
           <Typography
             variant="span"
-            sx={{ fontSize: "2rem", color: "primary.main", fontWeight: 400 }}
+            sx={{ fontSize:{ md: "2rem", xs: '1.4rem' }, color: "primary.main", fontWeight: 400 }}
           >
             <Typewriter
               options={{
@@ -77,8 +97,9 @@ const Home = () => {
         <Stack direction="row" spacing={1} sx={{ alignItems: "center" }}>
           <IconButton
             href="https://github.com/ElGoel"
+            target="_blank"
             sx={{
-              color: "primary.contrastText",
+              color: "primary",
               "&:hover": {
                 color: "primary.main",
                 transform: "scale(1.1)",
@@ -91,8 +112,9 @@ const Home = () => {
           </IconButton>
           <IconButton
             href="https://www.linkedin.com/in/angelocolmanu/"
+            target="_blank"
             sx={{
-              color: "primary.contrastText",
+              color: "primary",
               "&:hover": {
                 color: "primary.main",
                 transform: "scale(1.1)",
@@ -105,8 +127,9 @@ const Home = () => {
           </IconButton>
           <IconButton
             href="https://twitter.com/ElGoel_"
+            target="_blank"
             sx={{
-              color: "primary.contrastText",
+              color: "primary",
               "&:hover": {
                 color: "primary.main",
                 transform: "scale(1.1)",
@@ -119,20 +142,32 @@ const Home = () => {
           </IconButton>
         </Stack>
         <Box>
-          <Button href="https://drive.google.com/file/d/1usS4gqPiZ6mmgtlClVCqd89L88NSrokh/view" variant="contained" sx={{ color: "white", width: '200px' }}>
-            <FileDownloadIcon />
-            Resume
+          <Button
+            component={Link}
+            to="/about"
+            variant="contained"
+            onClick={handleChangePage}
+            sx={{ 
+              color: "primary.contrastText",
+              fontWeight: "bold", 
+              width: { sm: "200px", xs: "100%" }, 
+            }}
+          >
+            More About Me
+            <ForwardIcon />
           </Button>
         </Box>
       </Stack>
-      <Stack color="white">
-        <img
-          style={{ maxWidth: "100%", minWidth: "500px" }}
-          src={welcomingImage}
+      <Stack>
+        <Box
+          component='img'
+          sx={{ width: "auto", minWidth: "100%", maxWidth: "600px" }}
+          src={modeColor === 'light' ? welcomingImage : welcomingImageDarkMode}
           alt="Image of presentation"
-        />
+        >
+        </Box>
       </Stack>
-    </Box>
+    </Stack>
   );
 };
 

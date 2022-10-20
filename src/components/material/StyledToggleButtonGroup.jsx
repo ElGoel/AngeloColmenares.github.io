@@ -6,7 +6,7 @@ export const StyledToggleButtonGroup = styled(ToggleButtonGroup)(
       margin: ${theme.spacing(1.5)} ${theme.spacing(2)};
       border: 0;
       font-size: ${theme.typography.fontSize}px;
-      color: ${theme.palette.primary.contrastText};
+      color: ${theme.palette.text.primary};
       border-radius: ${theme.shape.borderRadius * 2}px !important;
       text-transform: capitalize;
       font-weight: ${theme.typography.fontWeightBold};
@@ -17,6 +17,7 @@ export const StyledToggleButtonGroup = styled(ToggleButtonGroup)(
       }
       &.Mui-selected {
         background-color: ${theme.palette.primary.main};
+        color: ${theme.palette.primary.contrastText};
         pointer-events: none;
       }
       &:not(:last-of-type) {
