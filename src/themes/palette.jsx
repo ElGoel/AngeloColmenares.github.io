@@ -6,7 +6,7 @@ const ColorModeContext = React.createContext();
 
 export const PaletteProvider = ({children}) => {
 
-  const [modeColor, setModeColor] = React.useState('light');
+  const [modeColor, setModeColor] = React.useState('dark');
   const colorMode = React.useMemo(
     () => ({
       toggleColorMode: () => {
