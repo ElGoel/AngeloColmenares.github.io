@@ -254,8 +254,7 @@ const Skills = () => {
       <Stack
         direction={{ md: "row", xs: "column" }}
         spacing={10}
-        alignItems="center"
-        mt={2}
+        mt={5}
         justifyContent="space-between"
       >
         <Stack 

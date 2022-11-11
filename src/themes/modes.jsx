@@ -38,7 +38,7 @@ export const getDesignTokens = (mode) => {
             }
           : {
               primary: "#fff",
-              secondary: grey[100],
+              secondary: grey[500],
             }),
       },
     },
