@@ -31,8 +31,6 @@ const contact = () => {
     });
   };
 
-  //  mailto:dazhkhors@gmail.com?subject=subject&body=from%3A%20alguien%2C%0D%0A%0D%0AHola%20gente 
-
   const handleSubmit = (e) => {
     e.preventDefault();
     window.location = `mailto:dazhkhors@gmail.com?subject=${personMail.subject}&body=from%3A%20${encodeURIComponent(personMail.name)}%2C%0D%0A%0D%0A${encodeURIComponent(personMail.message)}%0D%0A%0D%0A`;
@@ -42,7 +40,7 @@ const contact = () => {
     <section>
       <Typography
         sx={{
-          mb: "1rem",
+          m: "1rem",
           textAlign: "center",
           fontSize: "2.4rem",
           fontWeight: "500",
@@ -61,9 +59,10 @@ const contact = () => {
           Me
         </Typography>
       </Typography>
-      <Stack direction="row" width="100%" justifyContent="space-between">
+      <Stack spacing={{xs:10, md:'none'}} direction={{xs:"column-reverse", md:"row"}} width="100%" justifyContent="space-between">
         <Stack component="div" spacing={2} flex="1" alignItems="center">
           <Box
+            display={{ xs:'none', md:'block' }}
             component="img"
             sx={{ width: "100%", maxWidth: "250px" }}
             src={modeColor === "dark" ? darkContact : lightContact}
