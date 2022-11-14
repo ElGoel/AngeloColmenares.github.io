@@ -8,7 +8,7 @@ export const getDesignTokens = (mode) => {
       mode,
       primary: {
         ...(mode === "dark" 
-        ? { main: amber[500] } 
+        ? { main: cyan[200] } 
         : { main: cyan[500], 
             light: cyan[400], 
             dark: cyan[600]
@@ -20,14 +20,14 @@ export const getDesignTokens = (mode) => {
             background: {
               light: grey[800],
               default: grey[900],
-              paper: grey[900],
+              paper: grey[700],
             },
           }
         : {
             background: {
               light: grey[50],
               default: '#f2fbfd',
-              paper: '#f2fbfd',
+              paper: grey[300],
             },
           }),
       text: {
@@ -38,7 +38,7 @@ export const getDesignTokens = (mode) => {
             }
           : {
               primary: "#fff",
-              secondary: grey[100],
+              secondary: grey[500],
             }),
       },
     },
