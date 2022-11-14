@@ -85,10 +85,10 @@ const Projects = () => {
       const dependencies = resolv.map((obj) =>
         obj.dependencies ? obj.dependencies : obj.devDependencies
       );
-      dependencies.forEach(dependencie => {
-        const keys = Object.keys(dependencie).map(key => {
-          let keyFix = key.replace(/[/@-]/g, ' ');
-          let devNames = keyFix.trim().split(' ').shift();
+      dependencies.forEach((dependencie) => {
+        const keys = Object.keys(dependencie).map((key) => {
+          let keyFix = key.replace(/[/@-]/g, " ");
+          let devNames = keyFix.trim().split(" ").shift();
           return devNames;
         });
         // const newKeys =
@@ -100,233 +100,256 @@ const Projects = () => {
   }, []);
 
   return (
-    <section style={{ display: "flex", justifyContent: "space-between" }}>
-      <Stack alignItems="center" mt={15}>
-        <Typography
-          sx={{
-            mb: "1rem",
-            textAlign: "center",
-            fontSize: "2.4rem",
-            fontWeight: "500",
-          }}
-          component="h3"
-        >
-          My{" "}
+    <section style={{ display: "flex", justifyContent: "center" }}>
+      <Stack
+        direction={{ xs: "column", md: "row" }}
+        width="100%"
+        justifyContent="space-between"
+        alignItems="center"
+      >
+        <Stack alignItems="center" mt={{ xs: 5, md: 15 }}>
           <Typography
             sx={{
-              color: "primary.main",
+              mb: {xs:"6rem", sm:"1rem"},
+              textAlign: "center",
               fontSize: "2.4rem",
-              fontWeight: "700",
+              fontWeight: "500",
             }}
-            component="span"
+            component="h3"
           >
-            Projects
+            My{" "}
+            <Typography
+              sx={{
+                color: "primary.main",
+                fontSize: "2.4rem",
+                fontWeight: "700",
+              }}
+              component="span"
+            >
+              Projects
+            </Typography>
           </Typography>
-        </Typography>
-        <Box
-          width={300}
-          component="img"
-          src={modeColor === "dark" ? developerDarkImg : developerImg}
-        ></Box>
-      </Stack>
-      <Stack spacing={7} mt={8} maxWidth={700} width="100%">
-        <Stack
-          sx={{
-            p: "2rem",
-            bgcolor: "background.light",
-            position: "relative",
-            borderRadius: "10px",
-            boxShadow:
-              "0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12)",
-          }}
-          direction="row"
-          justifyContent="space-between"
-        >
-          <Stack variant="div" spacing={3} maxWidth={250}>
-            <Typography variant="h4">
-              {projectsData[0] && projectsData[0].name}
-            </Typography>
-            <Typography variant="body1" fontSize={18} component="p">
-              {projectsData[0] && projectsData[0].description}
-            </Typography>
-            <Stack direction="row" spacing={0.5}>
-              <Box
-                variant="div"
-                sx={{
-                  border: "2px solid",
-                  p: ".2rem",
-                  borderColor: "rgba(97, 218, 251)",
-                  bgcolor: "rgba(97, 218, 251,0.2)",
-                }}
-              >
-                <Typography variant="body2">ReactJs</Typography>
-              </Box>
-              <Box
-                variant="div"
-                sx={{
-                  border: "2px solid",
-                  p: ".2rem",
-                  borderColor: "rgba(31, 166, 202)",
-                  bgcolor: "rgba(31, 166, 202,0.2)",
-                }}
-              >
-                <Typography variant="body2">Material Ui</Typography>
-              </Box>
-              <Box
-                variant="div"
-                sx={{
-                  border: "2px solid",
-                  p: ".2rem",
-                  borderColor: "rgba(240,219,79)",
-                  bgcolor: "rgba(240,219,79,0.2)",
-                }}
-              >
-                <Typography variant="body2">JavaScript</Typography>
-              </Box>
-            </Stack>
-            <Stack direction="row" spacing={1}>
-              <Button
-                component="a"
-                href="https://github.com/ElGoel/ElGoel.github.io"
-                target="_blank"
-                size="small"
-                sx={{
-                  bgcolor: "background.paper",
-                  color: "text.secondary",
-                }}
-                disableElevation
-                variant="contained"
-              >
-                <Typography textTransform="lowercase">code {"<>"}</Typography>
-              </Button>
-              <Button
-                component="a"
-                href="https://elgoel.github.io/"
-                target="_blank"
-                size="small"
-                variant="contained"
-                endIcon={<TvIcon />}
-                disableElevation
-              >
-                <Typography textTransform="lowercase">demo</Typography>
-              </Button>
-            </Stack>
-          </Stack>
           <Box
+            display={{ xs: "none", md: "block" }}
+            width={300}
             component="img"
-            sx={{
-              width: "450px",
-              height: "300px",
-              objectFit: "cover",
-              position: "absolute",
-              borderRadius: "10px",
-              right: "-7%",
-              bottom: "3%",
-              boxShadow:
-                "0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12)",
-            }}
-            src={modeColor === "dark" ? portfolioDarkImage : portfolioImage}
-            alt=""
+            src={modeColor === "dark" ? developerDarkImg : developerImg}
           ></Box>
         </Stack>
-        <Stack
-          sx={{
-            p: "2rem",
-            bgcolor: "background.light",
-            position: "relative",
-            borderRadius: "10px",
-            boxShadow:
-              "0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12)",
-          }}
-          direction="row"
-          justifyContent="space-between"
-        >
-          <Stack variant="div" spacing={3} maxWidth={250}>
-            <Typography variant="h4">
-              {projectsData[1] && projectsData[1].name}
-            </Typography>
-            <Typography variant="body1" fontSize={18} component="p">
-              {projectsData[1] && projectsData[1].description}
-            </Typography>
-            <Stack direction="row" spacing={0.5}>
-              <Box
-                variant="div"
-                sx={{
-                  border: "2px solid",
-                  p: ".2rem",
-                  borderColor: "rgba(97, 218, 251)",
-                  bgcolor: "rgba(97, 218, 251,0.2)",
-                }}
-              >
-                <Typography variant="body2">ReactJs</Typography>
-              </Box>
-              <Box
-                variant="div"
-                sx={{
-                  border: "2px solid",
-                  p: ".2rem",
-                  borderColor: "rgba(203, 102, 153)",
-                  bgcolor: "rgba(203, 102, 153,0.2)",
-                }}
-              >
-                <Typography variant="body2">Sass</Typography>
-              </Box>
-              <Box
-                variant="div"
-                sx={{
-                  border: "2px solid",
-                  p: ".2rem",
-                  borderColor: "rgba(240,219,79)",
-                  bgcolor: "rgba(240,219,79,0.2)",
-                }}
-              >
-                <Typography variant="body2">JavaScript</Typography>
-              </Box>
+        <Stack spacing={{ xs:20, sm:5 }} mt={8} maxWidth={700} width="100%">
+          <Stack direction="row" position="relative">
+            <Stack
+              sx={{
+                p: "2rem",
+                bgcolor: "background.light",
+                zIndex: "1",
+                width: "100%",
+                borderRadius: "10px",
+                boxShadow:
+                  "0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12)",
+              }}
+              direction="row"
+              justifyContent={{ xs: "center", sm: "space-between" }}
+            >
+              <Stack variant="div" spacing={3} maxWidth={250}>
+                <Typography variant="h4">
+                  {projectsData[0] && projectsData[0].name}
+                </Typography>
+                <Typography variant="body1" fontSize={18} component="p">
+                  {projectsData[0] && projectsData[0].description}
+                </Typography>
+                <Stack direction="row" spacing={0.5}>
+                  <Box
+                    variant="div"
+                    sx={{
+                      border: "2px solid",
+                      p: ".2rem",
+                      borderColor: "rgba(97, 218, 251)",
+                      bgcolor: "rgba(97, 218, 251,0.2)",
+                    }}
+                  >
+                    <Typography variant="body2">ReactJs</Typography>
+                  </Box>
+                  <Box
+                    variant="div"
+                    sx={{
+                      border: "2px solid",
+                      p: ".2rem",
+                      borderColor: "rgba(31, 166, 202)",
+                      bgcolor: "rgba(31, 166, 202,0.2)",
+                    }}
+                  >
+                    <Typography variant="body2">Material Ui</Typography>
+                  </Box>
+                  <Box
+                    variant="div"
+                    sx={{
+                      border: "2px solid",
+                      p: ".2rem",
+                      borderColor: "rgba(240,219,79)",
+                      bgcolor: "rgba(240,219,79,0.2)",
+                    }}
+                  >
+                    <Typography variant="body2">JavaScript</Typography>
+                  </Box>
+                </Stack>
+                <Stack direction="row" spacing={1}>
+                  <Button
+                    component="a"
+                    href="https://github.com/ElGoel/ElGoel.github.io"
+                    target="_blank"
+                    size="small"
+                    sx={{
+                      bgcolor: "background.paper",
+                      color: "text.secondary",
+                    }}
+                    disableElevation
+                    variant="contained"
+                  >
+                    <Typography textTransform="lowercase">
+                      code {"<>"}
+                    </Typography>
+                  </Button>
+                  <Button
+                    component="a"
+                    href="https://elgoel.github.io/"
+                    target="_blank"
+                    size="small"
+                    variant="contained"
+                    endIcon={<TvIcon />}
+                    disableElevation
+                  >
+                    <Typography textTransform="lowercase">demo</Typography>
+                  </Button>
+                </Stack>
+              </Stack>
             </Stack>
-            <Stack direction="row" spacing={1}>
-              <Button
-                component="a"
-                href="https://github.com/ElGoel/pokedex_React"
-                target="_blank"
-                size="small"
-                sx={{
-                  bgcolor: "background.paper",
-                  color: "text.secondary",
-                }}
-                disableElevation
-                variant="contained"
-              >
-                <Typography textTransform="lowercase">code {"<>"}</Typography>
-              </Button>
-              <Button
-                component="a"
-                href="https://poke-angelo.netlify.app/"
-                target="_blank"
-                size="small"
-                variant="contained"
-                endIcon={<TvIcon />}
-                disableElevation
-              >
-                <Typography textTransform="lowercase">demo</Typography>
-              </Button>
-            </Stack>
+            <Box
+              component="img"
+              sx={{
+                maxWidth: { sm: "450px" },
+                width: "100%",
+                height: "300px",
+                objectFit: "cover",
+                position: "absolute",
+                zIndex: { xs: "-1", sm: "2" },
+                overflow: "hidden",
+                borderRadius: "10px",
+                right: { xs: "0", sm: "-7%" },
+                bottom: { xs: "40%", sm: "3%" },
+                boxShadow:
+                  "0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12)",
+              }}
+              src={modeColor === "dark" ? portfolioDarkImage : portfolioImage}
+              alt=""
+            ></Box>
           </Stack>
-          <Box
-            component="img"
-            sx={{
-              width: "450px",
-              height: "300px",
-              objectFit: "cover",
-              position: "absolute",
-              borderRadius: "10px",
-              right: "-7%",
-              bottom: "3%",
-              boxShadow:
-                "0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12)",
-            }}
-            src={pokeReactImage}
-            alt=""
-          ></Box>
+
+          <Stack direction="row" position="relative">
+            <Stack
+              sx={{
+                p: "2rem",
+                bgcolor: "background.light",
+                zIndex: "1",
+                width: "100%",
+                boxShadow:
+                  "0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12)",
+              }}
+              direction="row"
+              justifyContent={{ xs: "center", sm: "space-between" }}
+            >
+              <Stack variant="div" spacing={3} maxWidth={250}>
+                <Typography variant="h4">
+                  {projectsData[1] && projectsData[1].name}
+                </Typography>
+                <Typography variant="body1" fontSize={18} component="p">
+                  {projectsData[1] && projectsData[1].description}
+                </Typography>
+                <Stack direction="row" spacing={0.5}>
+                  <Box
+                    variant="div"
+                    sx={{
+                      border: "2px solid",
+                      p: ".2rem",
+                      borderColor: "rgba(97, 218, 251)",
+                      bgcolor: "rgba(97, 218, 251,0.2)",
+                    }}
+                  >
+                    <Typography variant="body2">ReactJs</Typography>
+                  </Box>
+                  <Box
+                    variant="div"
+                    sx={{
+                      border: "2px solid",
+                      p: ".2rem",
+                      borderColor: "rgba(203, 102, 153)",
+                      bgcolor: "rgba(203, 102, 153,0.2)",
+                    }}
+                  >
+                    <Typography variant="body2">Sass</Typography>
+                  </Box>
+                  <Box
+                    variant="div"
+                    sx={{
+                      border: "2px solid",
+                      p: ".2rem",
+                      borderColor: "rgba(240,219,79)",
+                      bgcolor: "rgba(240,219,79,0.2)",
+                    }}
+                  >
+                    <Typography variant="body2">JavaScript</Typography>
+                  </Box>
+                </Stack>
+                <Stack direction="row" spacing={1}>
+                  <Button
+                    component="a"
+                    href="https://github.com/ElGoel/pokedex_React"
+                    target="_blank"
+                    size="small"
+                    sx={{
+                      bgcolor: "background.paper",
+                      color: "text.secondary",
+                    }}
+                    disableElevation
+                    variant="contained"
+                  >
+                    <Typography textTransform="lowercase">
+                      code {"<>"}
+                    </Typography>
+                  </Button>
+                  <Button
+                    component="a"
+                    href="https://poke-angelo.netlify.app/"
+                    target="_blank"
+                    size="small"
+                    variant="contained"
+                    endIcon={<TvIcon />}
+                    disableElevation
+                  >
+                    <Typography textTransform="lowercase">demo</Typography>
+                  </Button>
+                </Stack>
+              </Stack>
+            </Stack>
+            <Box
+              component="img"
+              sx={{
+                width: "100%",
+                height: "300px",
+                objectFit: "cover",
+                position: "absolute",
+                borderRadius: "10px",
+                maxWidth: { sm: "450px" },
+                zIndex: { xs: "-1", sm: "2" },
+                right: { xs: "0", sm: "-7%" },
+                bottom: { xs: "40%", sm: "3%" },
+                boxShadow:
+                  "0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12)",
+              }}
+              src={pokeReactImage}
+              alt=""
+            ></Box>
+          </Stack>
         </Stack>
       </Stack>
     </section>

@@ -5,7 +5,7 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 
 const SocialIcons = () => {
   return (
-    <Stack sx={{ position:'fixed', top:'60%', right:'1%', alignItems:'center' }}>
+    <Stack sx={{ position:'fixed', top:'60%', right:'1%', alignItems:'center', zIndex:"100" }}>
       {" "}
       <Stack direction="column" spacing={1} sx={{ alignItems: "center" }}>
         <IconButton
