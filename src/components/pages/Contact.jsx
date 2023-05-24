@@ -101,7 +101,7 @@ const contact = () => {
               <LocalPhoneIcon />
               <div>
                 <Typography variant="h6" sx={{ fontWeight: "bold" }}>
-                  +58 414 371 3899
+                  +57 317 279 1911
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                   Call me or send me a WhatsApp message
